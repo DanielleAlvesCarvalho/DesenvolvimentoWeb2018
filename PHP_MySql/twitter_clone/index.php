@@ -18,7 +18,20 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
 		<script>
-			// código javascript						
+			$(document).ready( function(){
+				//no jquery novo é substituido por .on("click", function())
+				$("#btn_login").click(function(){
+					if($("#campo_usuario").val() == ""){
+						$("#campo_usuario").css({
+							
+						})
+					}
+
+					if($("#campo_senha").val() == ""){
+						alert("Campo senha esta vazio")
+					}
+				})
+			})				
 		</script>
 	</head>
 
