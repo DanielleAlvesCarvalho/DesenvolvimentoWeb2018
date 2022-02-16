@@ -15,13 +15,16 @@
 
     if($id_usuario == '') die();
 
-    $sql = " SELECT * FROM tweet WHERE id_usuario = $id_usuario ORDER BY data_inclusao DESC ";
+    $sql = " SELECT DATE_FORMAT(T.data_inclusao, '%d %b %Y %T') data_inclusao, T.tweet, U.usuario FROM tweet T JOIN usuarios U ON (T.id_usuario = U.id)";
+    $sql .= " WHERE id_usuario = $id_usuario ORDER BY data_inclusao DESC ";
 
     if($resultado = mysqli_query($conn, $sql)){
         
         while($tweets = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
-            var_dump($tweets);
-            echo '<br /><br />';
+            echo "<a href='' class='list-group-item'>";
+                echo "<h4 class='list-group-item-heading'>".$tweets['usuario']." <small> - ". $tweets['data_inclusao'] ."</small></h4>";
+                echo "<p class='list-group-item-text'>".$tweets['tweet']."</p>";
+            echo "</a>";
         }
 
     } else {
