@@ -97,6 +97,7 @@
                             method: 'POST',
                             data: { text_tweet : $("#text_tweet").val() },
                             success: function(msg){
+                                $("#text_tweet").val(' ')
                                 alert(msg)
                             }
                         })
