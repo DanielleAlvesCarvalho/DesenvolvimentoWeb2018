@@ -9,14 +9,16 @@
     $db = new Db();
     $conn = $db->conectaDb();
 
+    $usuario_existe = false;
+    $email_existe = false;
+
     $sql = " SELECT usuario, email FROM usuarios WHERE usuario = '$usuario' ";
 
     if($resultado = mysqli_query($conn, $sql)){
         $dados_usuario = mysqli_fetch_array($resultado);
 
         if(isset($dados_usuario["usuario"])){
-            echo 'Usuário já cadastrado';
-            die();
+            $usuario_existe = true;
         }
     } else {
         echo "Erro ao tentar localizar o registro";
@@ -28,11 +30,26 @@
         $dados_usuario = mysqli_fetch_array($resultado);
 
         if(isset($dados_usuario["email"])){
-            echo 'E-mail já cadastrado';
-            die();
+            $email_existe = true;
         }
     } else {
         echo "Erro ao tentar localizar o registro";
+    }
+
+    if($usuario_existe || $email_existe){
+
+        $retorno_get = '';
+
+        if($usuario_existe){
+            $retorno_get .= 'erro_usuario=1&';
+        }
+
+        if($email_existe){
+            $retorno_get .= 'erro_email=1&';
+        }
+
+        header('Location: inscrevase.php?'.$retorno_get);
+        die();
     }
 
     $sql = " INSERT INTO usuarios(usuario, email, senha) VALUES ('$usuario','$email','$senha')";
