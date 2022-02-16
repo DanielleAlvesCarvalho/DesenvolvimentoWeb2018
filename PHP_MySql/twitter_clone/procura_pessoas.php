@@ -39,6 +39,7 @@
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
+                  <li><a href="home.php">Home</a></li>
 	            <li><a href="sair.php">Sair</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -66,21 +67,20 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="text_tweet" placeholder="O que está acontecendo agora?" maxlength="140">
+                            <input type="text" class="form-control" id="nome_pessoa" placeholder="Quem você está procurando?" maxlength="140">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" id="btn_tweet" type="button">Tweet</button>
+                                <button class="btn btn-default" id="btn_procura" type="button">Procurar</button>
                             </span>
                         </div>
                     </div>
                 </div>
 
-                <div id="tweets" class="list-group"></div>
+                <div id="pessoas" class="list-group"></div>
 			</div>
 
 			<div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h4><a href="procura_pessoas.php">Procurar por pessoas</a></h4>
                     </div>
                 </div>
             </div>
@@ -90,29 +90,17 @@
 	    </div>
 	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <script>
-            function atualizaTweet(){
-                $.ajax({
-                        url: 'get_tweet.php',
-                        success: function(msg){
-                            $("#tweets").html(msg)
-                        }
-                    })
-            }
-
+        <script>
             $(document).ready(function (){
-
-                atualizaTweet()
-
-                $("#btn_tweet").click(function(){
-                    if($("#text_tweet").val().length > 0){
+                $("#btn_procura").click(function(){
+                    if($("#nome_pessoa").val().length > 0){
                         $.ajax({
-                            url: 'inclui_tweet.php',
+                            url: 'get_pessoas.php',
                             method: 'POST',
-                            data: { text_tweet : $("#text_tweet").val() },
+                            data: { nome_pessoa : $("#nome_pessoa").val() },
                             success: function(msg){
-                                $("#text_tweet").val('')
-                                atualizaTweet()
+                                $("#nome_pessoa").val('')
+                                $("#pessoas").html(msg)
                             }
                         })
                     }
