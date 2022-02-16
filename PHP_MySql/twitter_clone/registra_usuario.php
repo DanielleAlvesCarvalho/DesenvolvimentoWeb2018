@@ -4,7 +4,7 @@
 
     $usuario = $_POST["usuario"];
     $email = $_POST["email"];
-    $senha = $_POST["senha"];
+    $senha = md5($_POST["senha"]);
 
     $db = new Db();
     $conn = $db->conectaDb();

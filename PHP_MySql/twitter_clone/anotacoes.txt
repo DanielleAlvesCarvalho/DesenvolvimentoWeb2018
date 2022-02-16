@@ -1,0 +1,11 @@
+# CRIPTOGRAFIA #
+
+- Mão única (Não é possivel descriptografar), Ex: MD5, SHA1;
+- Mão dupla (É possível descriptografar), Ex: BASE64;
+
+Na criptografia de mão única armazenamos o dado criptografado e comparamos a entrada do usuário criptografada (no caso de uma senha por exemplo) com o dado armazenado no banco;
+
+- MD5 gera uma cadeia de 32 char
+- SHA1 gera uma cadeia de 40 char
+
+-- Quanto mais caracteres forem gerados menor a chance de dados diferentes gerarem o mesmo hash --
