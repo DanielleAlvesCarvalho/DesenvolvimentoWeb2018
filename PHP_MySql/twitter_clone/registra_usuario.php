@@ -9,7 +9,7 @@
     $db = new Db();
     $conn = $db->conectaDb();
 
-    $sql = " insert into usuarios(usuario, email, senha) values ('$usuario','$email','$senha')";
+    $sql = " INSERT INTO usuarios(usuario, email, senha) VALUES ('$usuario','$email','$senha')";
 
     if(mysqli_query($conn, $sql)){
         echo "Usuario registrado com sucesso";
