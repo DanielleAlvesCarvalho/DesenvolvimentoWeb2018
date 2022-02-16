@@ -66,9 +66,9 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="O que está acontecendo agora?" maxlength="140">
+                            <input type="text" class="form-control" id="text_tweet" placeholder="O que está acontecendo agora?" maxlength="140">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Tweet</button>
+                                <button class="btn btn-default" id="btn_tweet" type="button">Tweet</button>
                             </span>
                         </div>
                     </div>
@@ -88,6 +88,14 @@
 	    </div>
 	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	
+	    <script>
+            $(document).ready(function (){
+                $("#btn_tweet").click(function(){
+                    if($("#text_tweet").val().length > 0){
+                        
+                    }
+                })
+            })
+        </script>
 	</body>
 </html>
