@@ -101,6 +101,18 @@
                             success: function(msg){
                                 $("#nome_pessoa").val('')
                                 $("#pessoas").html(msg)
+                                $(".btn_seguir").click( function(){
+                                    var id_usuario = $(this).data('id_usuario')
+
+                                    $.ajax({
+                                        url: 'seguir.php',
+                                        method: 'POST',
+                                        data: { seguir_id_usuario : id_usuario },
+                                        success: function(msg){
+                                            
+                                        }
+                                    })
+                                })
                             }
                         })
                     }
