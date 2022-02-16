@@ -17,22 +17,6 @@
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
-		<script>
-			$(document).ready( function(){
-				//no jquery novo é substituido por .on("click", function())
-				$("#btn_login").click(function(){
-					if($("#campo_usuario").val() == ""){
-						$("#campo_usuario").css({
-							
-						})
-					}
-
-					if($("#campo_senha").val() == ""){
-						alert("Campo senha esta vazio")
-					}
-				})
-			})				
-		</script>
 	</head>
 
 	<body>
@@ -105,6 +89,28 @@
 	    </div>
 	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	
+		<script>
+			$(document).ready( function(){
+				//no jquery novo é substituido por .on("click", function())
+				$("#btn_login").click(function(){
+					$("#campo_usuario").css({"border-color" : "#CCC"})
+					$("#campo_senha").css({"border-color" : "#CCC"})
+
+					var campo_vazio = false
+
+					if($("#campo_usuario").val() == ""){
+						$("#campo_usuario").css({"border-color" : "#A94442"})
+						campo_vazio = true
+					}
+
+					if($("#campo_senha").val() == ""){
+						$("#campo_senha").css({"border-color" : "#A94442"})
+						campo_vazio = true
+					}
+
+					if(campo_vazio) return false
+				})
+			})				
+		</script>
 	</body>
 </html>
