@@ -73,6 +73,8 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="tweets" class="list-group"></div>
 			</div>
 
 			<div class="col-md-3">
@@ -89,7 +91,19 @@
 	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <script>
+            function atualizaTweet(){
+                $.ajax({
+                        url: 'get_tweet.php',
+                        success: function(msg){
+                            $("#tweets").html(msg)
+                        }
+                    })
+            }
+
             $(document).ready(function (){
+
+                atualizaTweet()
+
                 $("#btn_tweet").click(function(){
                     if($("#text_tweet").val().length > 0){
                         $.ajax({
