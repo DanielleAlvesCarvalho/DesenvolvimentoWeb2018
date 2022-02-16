@@ -92,7 +92,14 @@
             $(document).ready(function (){
                 $("#btn_tweet").click(function(){
                     if($("#text_tweet").val().length > 0){
-                        
+                        $.ajax({
+                            url: 'inclui_tweet.php',
+                            method: 'POST',
+                            data: { text_tweet : $("#text_tweet").val() },
+                            success: function(msg){
+                                alert(msg)
+                            }
+                        })
                     }
                 })
             })
