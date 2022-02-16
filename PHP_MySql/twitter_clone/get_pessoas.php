@@ -23,6 +23,10 @@
         while($pessoas = mysqli_fetch_array($resultado, MYSQLI_ASSOC)){
             echo "<a href='' class='list-group-item'>";
                 echo "<strong>".$pessoas['usuario']."</strong> - <small>".$pessoas['email']."</small>";
+                echo "<p class='list-group-item-text pull-right'>";
+                    echo "<button type='button' class='btn btn-primary'>Seguir</button>";
+                echo "</p>";
+                echo "<div class='clearfix'></div>";
             echo "</a>";
         }
 

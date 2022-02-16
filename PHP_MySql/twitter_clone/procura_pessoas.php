@@ -69,7 +69,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" id="nome_pessoa" placeholder="Quem você está procurando?" maxlength="140">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" id="btn_procura" type="button">Procurar</button>
+                                <button class="btn btn-primary" id="btn_procura" type="button">Procurar</button>
                             </span>
                         </div>
                     </div>
