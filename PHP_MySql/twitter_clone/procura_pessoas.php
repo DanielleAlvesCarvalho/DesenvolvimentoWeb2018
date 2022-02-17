@@ -6,6 +6,29 @@
         header('Location: index.php?erro=1');
     }
 
+    require_once 'db.class.php';
+
+    $db = new Db();
+    $conn = $db->conectaDb();
+
+    $id_usuario = $_SESSION['id_usuario'];
+
+    $sql = " SELECT COUNT(*) AS qtde_tweets FROM tweet WHERE id_usuario = $id_usuario ";
+
+    if($resultado = mysqli_query($conn, $sql)){
+        $tweets = mysqli_fetch_array($resultado, MYSQLI_ASSOC);
+    } else {
+        echo "Erro ao procurar tweets";
+    }
+
+    $sql = " SELECT COUNT(*) AS qtde_seguidores FROM usuarios_seguidores WHERE seguindo_id_usuario = $id_usuario ";
+
+    if($resultado = mysqli_query($conn, $sql)){
+        $seguidores = mysqli_fetch_array($resultado, MYSQLI_ASSOC);
+    } else {
+        echo "Erro ao procurar seguidores";
+    }
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
@@ -48,16 +71,16 @@
 
 
 	    <div class="container">
-	    	<div class="col-md-3">
+            <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4 class="text-center"><?= $_SESSION['usuario'] ?></h4>
                         <hr>
                         <div class="col-md-6">
-                            Tweets <br> 1
+                            Tweets <br> <?= $tweets['qtde_tweets'] ?>
                         </div>
                         <div class="col-md-6">
-                            Seguidores <br> 1
+                            Seguidores <br> <?= $seguidores['qtde_seguidores'] ?>
                         </div>
                     </div>
                 </div>
