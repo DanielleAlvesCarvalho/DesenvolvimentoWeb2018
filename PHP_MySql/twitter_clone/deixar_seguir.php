@@ -8,22 +8,22 @@
 
     require_once 'db.class.php';
 
-    $seguir_id_usuario = $_POST['seguir_id_usuario'];
+    $deixar_seguir_id_usuario = $_POST['deixar_seguir_id_usuario'];
     $id_usuario = $_SESSION['id_usuario'];
-    
-    if($seguir_id_usuario == '' || $id_usuario == '') die();
+
+    if($deixar_seguir_id_usuario == '' || $id_usuario == '') die();
 
     $db = new Db();
     $conn = $db->conectaDb();
 
 
 
-    $sql = " INSERT INTO usuarios_seguidores(id_usuario, seguindo_id_usuario) VALUES ($id_usuario, $seguir_id_usuario)";
+    $sql = " DELETE FROM usuarios_seguidores WHERE id_usuario = $id_usuario AND seguindo_id_usuario = $deixar_seguir_id_usuario ";
 
     if($resultado = mysqli_query($conn, $sql)){
         
     } else {
-        echo "Erro ao seguir usuário". $sql;
+        echo "Erro ao deixar de seguir usuário". $sql;
     }
 
 ?>

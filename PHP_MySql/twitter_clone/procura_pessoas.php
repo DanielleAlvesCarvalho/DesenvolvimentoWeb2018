@@ -101,6 +101,7 @@
                             success: function(msg){
                                 $("#nome_pessoa").val('')
                                 $("#pessoas").html(msg)
+
                                 $(".btn_seguir").click( function(){
                                     var id_usuario = $(this).data('id_usuario')
 
@@ -109,7 +110,22 @@
                                         method: 'POST',
                                         data: { seguir_id_usuario : id_usuario },
                                         success: function(msg){
-                                            
+                                            $('#btn_seguir_'+id_usuario).toggle()
+                                            $('#btn_deixar_seguir_'+id_usuario).toggle()
+                                        }
+                                    })
+                                })
+
+                                $(".btn_deixar_seguir").click( function(){
+                                    var id_usuario = $(this).data('id_usuario')
+
+                                    $.ajax({
+                                        url: 'deixar_seguir.php',
+                                        method: 'POST',
+                                        data: { deixar_seguir_id_usuario : id_usuario },
+                                        success: function(msg){
+                                            $('#btn_seguir_'+id_usuario).toggle()
+                                            $('#btn_deixar_seguir_'+id_usuario).toggle()
                                         }
                                     })
                                 })
