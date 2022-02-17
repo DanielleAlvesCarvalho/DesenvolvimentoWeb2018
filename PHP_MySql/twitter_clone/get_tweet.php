@@ -15,8 +15,10 @@
 
     if($id_usuario == '') die();
 
-    $sql = " SELECT DATE_FORMAT(T.data_inclusao, '%d %b %Y %T') data_inclusao, T.tweet, U.usuario FROM tweet T JOIN usuarios U ON (T.id_usuario = U.id)";
-    $sql .= " WHERE id_usuario = $id_usuario ORDER BY data_inclusao DESC ";
+    $sql  = " SELECT DATE_FORMAT(T.data_inclusao, '%d %b %Y %T') data_inclusao, T.tweet, U.usuario FROM tweet T JOIN usuarios U ON (T.id_usuario = U.id)";
+    $sql .= " WHERE id_usuario = $id_usuario";
+    $sql .= " OR id_usuario IN (SELECT seguindo_id_usuario FROM usuarios_seguidores WHERE id_usuario = $id_usuario)";
+    $sql .= " ORDER BY data_inclusao DESC";
 
     if($resultado = mysqli_query($conn, $sql)){
         
